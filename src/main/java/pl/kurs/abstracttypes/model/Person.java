@@ -1,5 +1,7 @@
 package pl.kurs.abstracttypes.model;
 
+import java.util.Objects;
+
 public class Person implements AnimalOwner {
 
     private String firstName;
@@ -61,5 +63,19 @@ public class Person implements AnimalOwner {
     @Override
     public void printInfo() {
         System.out.println(firstName + " posiada zwierzaka o imieniu " + ownedAnimal.getName() + ". Aktualnie " + ownedAnimal.getExcitement().toString());
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(firstName, person.firstName) && Objects.equals(ownedAnimal, person.ownedAnimal);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, ownedAnimal);
     }
 }
